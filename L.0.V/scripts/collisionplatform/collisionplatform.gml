@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function collision_platform(x, y, speed_v){
 	var _list = ds_list_create()
 	var _count = instance_place_list(x, y, Obj_Platform, _list, false)
@@ -8,6 +6,14 @@ function collision_platform(x, y, speed_v){
 	if (_count == 0) return false
 	
 	for (var i = 0; i < _count; i++) {
+		if ( _list[| i].aSolid == true ) {
+			_result = true
+			break
+		}
+		if ( _list[| i].pSolid == false ) {
+			_result = false
+			break
+		}
 		if (_list[| i].half == false) {
 			_result = true
 			break
